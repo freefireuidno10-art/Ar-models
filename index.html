@@ -5,30 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #1a1a1a; color: white; font-family: sans-serif; }
-        model-viewer { width: 100%; height: 90vh; }
-        .controls { height: 10vh; display: flex; justify-content: center; align-items: center; gap: 10px; background: #222; }
-        button { padding: 8px 15px; cursor: pointer; border: none; border-radius: 5px; background: #444; color: white; }
-        button:active { background: #ff4444; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #1a1a1a; }
+        model-viewer { width: 100%; height: 100%; }
     </style>
 </head>
 <body>
 
-    <model-viewer id="main-viewer" src="model.glb" ar camera-controls auto-rotate shadow-intensity="1">
-        <button slot="ar-button" style="background: white; border: none; border-radius: 4px; padding: 10px; position: absolute; top: 10px; right: 10px;">👋 View in AR</button>
+    <model-viewer 
+        src="model.glb" 
+        ar 
+        ar-modes="scene-viewer quick-look webxr" 
+        camera-controls 
+        auto-rotate 
+        shadow-intensity="1"
+        scale="1 1 1"
+        ar-placement="floor"
+        alt="3D Model">
+        
+        <button slot="ar-button" style="background-color: white; border-radius: 8px; border: none; position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); padding: 12px 24px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
+            👋 PLACE IN ROOM
+        </button>
+
     </model-viewer>
 
-    <div class="controls">
-        <button onclick="switchModel('model.glb')">Model 1</button>
-        <button onclick="switchModel('naruto.glb')">Naruto</button>
-        <button onclick="switchModel('muichiro.glb')">Muichiro</button>
-    </div>
-
-    <script>
-        function switchModel(fileName) {
-            const viewer = document.querySelector('#main-viewer');
-            viewer.src = fileName;
-        }
-    </script>
 </body>
 </html>
