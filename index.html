@@ -5,26 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #1a1a1a; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #1a1a1a; color: white; font-family: sans-serif; }
         model-viewer { width: 100%; height: 100%; }
+        /* Error message styling */
+        #ar-failure { display: none; position: absolute; bottom: 100px; width: 80%; left: 10%; background: rgba(0,0,0,0.8); padding: 15px; border-radius: 10px; text-align: center; font-size: 14px; }
     </style>
 </head>
 <body>
 
     <model-viewer 
         src="model.glb" 
+        ios-src="model.usdz" 
         ar 
         ar-modes="scene-viewer quick-look webxr" 
         camera-controls 
         auto-rotate 
         shadow-intensity="1"
-        scale="1 1 1"
         ar-placement="floor"
         alt="3D Model">
         
         <button slot="ar-button" style="background-color: white; border-radius: 8px; border: none; position: absolute; bottom: 50px; left: 50%; transform: translateX(-50%); padding: 12px 24px; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
             👋 PLACE IN ROOM
         </button>
+
+        <!-- This message shows up if the phone doesn't support AR -->
+        <div id="ar-failure" slot="ar-missing">
+            Your device sensors aren't ready for AR. <br> Use the 3D viewer above to see details!
+        </div>
 
     </model-viewer>
 
